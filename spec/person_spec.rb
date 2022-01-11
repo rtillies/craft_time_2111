@@ -26,4 +26,13 @@ describe 'Iteration 1. Person' do
 
     expect(@person.supplies).to eq(expected)
   end
+
+  it '#add_supply with existing item' do
+    @person.add_supply('fabric', 4)
+    @person.add_supply('scissors', 1)
+    @person.add_supply('fabric', 3)
+    expected = {"fabric"=>7, "scissors"=>1}
+
+    expect(@person.supplies).to eq(expected)
+  end
 end
