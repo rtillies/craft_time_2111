@@ -4,15 +4,18 @@ require './lib/person'
 require './lib/craft'
 require './lib/event'
 
-RSpec.describe Person do
-  describe 'Iteration 1' do
-    skip before :each do
-    end
+describe 'Iteration 1. Person' do
+  before :each do
+    @person = Person.new({name: 'Hector', interests: ['sewing', 'millinery', 'drawing']})
+  end
 
-    xit 'exists' do
-    end
+  it 'exists' do
+    expect(@person).to be_a Person
+  end
 
-    xit 'has attributes' do
-    end
+  it 'has attributes' do
+    expect(@person.name).to eq("Hector")
+    expect(@person.interests).to eq(['sewing', 'millinery', 'drawing'])
+    expect(@person.supplies).to eq({})
   end
 end
