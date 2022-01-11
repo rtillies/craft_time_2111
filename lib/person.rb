@@ -14,4 +14,15 @@ class Person
       @supplies[item] = quantity
     end
   end
+
+  def can_build?(craft)
+    if supplies == {}
+      false
+    else
+      craft.supplies_required.all? do |supply, quantity|
+        @supplies[supply.to_s] >= quantity
+      end
+    end
+  end
+
 end
