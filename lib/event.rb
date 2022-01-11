@@ -16,4 +16,9 @@ class Event
       craft.supplies_required.length
     end.name
   end
+
+  def supply_list
+    list = @crafts.flat_map { |craft| craft.supplies_required.keys}
+    list.map { |craft_name| craft_name.to_s}.uniq
+  end
 end
