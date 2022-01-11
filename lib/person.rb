@@ -16,13 +16,14 @@ class Person
   end
 
   def can_build?(craft)
-    if supplies == {}
-      false
-    else
-      craft.supplies_required.all? do |supply, quantity|
-        @supplies[supply.to_s] >= quantity
+    supply_check = craft.supplies_required.map do |item, quantity|
+      supply = item.to_s
+      if @supplies.key?(supply)
+        @supplies[supply] >= quantity
+      else
+        false
       end
-    end
+    end.all?
   end
 
 end

@@ -46,7 +46,24 @@ describe 'Iteration 2. Person' do
     @event = Event.new("Carla's Craft Connection", [@sewing, @knitting], [@hector, @toni])
   end
 
-  it '#can_build? 1' do
+  it '#can_build? no supplies' do
     expect(@hector.can_build?(@sewing)).to eq(false)
   end
+
+    it '#can_build? some but not all supplies' do
+      @hector.add_supply('fabric', 7)
+      @hector.add_supply('thread', 1)
+
+      expect(@hector.can_build?(@sewing)).to eq(false)
+    end
+
+    it '#can_build? all supplies' do
+      @hector.add_supply('fabric', 7)
+      @hector.add_supply('thread', 1)
+      @hector.add_supply('scissors', 1)
+      @hector.add_supply('sewing_needles', 1)
+
+      expect(@hector.can_build?(@sewing)).to eq(true)
+    end
+
 end
